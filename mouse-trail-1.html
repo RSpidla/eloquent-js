@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Mouse Trail Solution - Eloquent JavaScript</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <style>
+    .trail { /* className for the trail elements */
+      position: absolute;
+      height: 6px; width: 6px;
+      border-radius: 3px;
+      background: teal;
+    }
+    body {
+      height: 300px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <script>
+    let dots = [];
+    for (let i = 0; i < 12; i++) {
+      let node = document.createElement("div");
+      node.className = "trail";
+      document.body.appendChild(node);
+      dots.push(node);
+    }
+    let currentDot = 0;
+
+    window.addEventListener("mousemove", event => {
+      let dot = dots[currentDot];
+      dot.style.left = (event.pageX - 3) + "px";
+      dot.style.top = (event.pageY - 3) + "px";
+      currentDot = (currentDot + 1) % dots.length;
+    });
+  </script>
+
+</body>
+
+</html>
